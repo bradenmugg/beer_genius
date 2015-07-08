@@ -9,7 +9,7 @@ class SearchesController < ApplicationController
         render 'searches/new'
     else
         flash[:notice] = "Beer not found"
-        redirect_to 'beers#new'
+        redirect_to root_path
     end
   end
   

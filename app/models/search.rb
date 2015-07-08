@@ -33,7 +33,7 @@ class Search
         beer_in.style = result["style"]["id"]
         self.user_beer = beer_in
     else
-        redirect_to 'beers#new'
+        return 0
     end
   end
 
@@ -46,6 +46,7 @@ class Search
     ibu_high = (self.user_beer.ibu.to_i + 1)
     abv_low = (self.user_beer.abv.to_f - 0.1)
     abv_high = (self.user_beer.abv.to_f + 0.1)
+    count = 0
     while self.chosen_ones.size <= 10
       result = brewery_db.beers.all(abv: "#{abv_low},#{abv_high}", ibu: "#{ibu_low},#{ibu_high}", styleId: "#{self.user_beer.style}", withBreweries: "Y").first(20)
       result.each do |x|
@@ -75,6 +76,7 @@ class Search
             self.chosen_ones.push(beer_in)
           end
         end
+        count =+ 1
         ibu_low -= 1
         ibu_high += 1
         abv_low -= 0.1
