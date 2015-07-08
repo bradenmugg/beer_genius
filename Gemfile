@@ -13,6 +13,7 @@ gem 'rails_layout'
 gem 'brewery_db'
 gem 'simple_form'
 
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -24,6 +25,7 @@ gem 'simple_form'
 
 group :development, :test do
   gem 'byebug'
+  gem 'sqlite3'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
