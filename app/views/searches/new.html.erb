@@ -1,0 +1,4 @@
+<%count = 1%>
+<%@search.chosen_ones.each do |x|%>
+    <li><%="#{count}. #{x.brewery}: #{x.name}, abv: #{x.abv}, ibu: #{x.ibu}"%></li>
+<%end%>
