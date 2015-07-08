@@ -25,7 +25,7 @@ class Search
     beer_in = Beverage.new
     first_fifty = brewery_db.beers.all(name: "#{beer_name}").first(1)
     result = (first_fifty[0]).to_h
-    beer_in.name = result["id"]
+    beer_in.id = result["id"]
     beer_in.name = result["name"]
     beer_in.abv = result["abv"].to_f
     beer_in.ibu = result["ibu"].to_i
@@ -45,7 +45,7 @@ class Search
     while self.chosen_ones.size <= 10
       result = brewery_db.beers.all(abv: "#{abv_low},#{abv_high}", ibu: "#{ibu_low},#{ibu_high}", styleId: "#{self.user_beer.style}", withBreweries: "Y").first(20)
       result.each do |x|
-        beer_in = Beer.new
+        beer_in = Beverage.new
         hash = x.to_h
         beer_in.id = hash["id"]
         beer_in.name = hash["name"]
