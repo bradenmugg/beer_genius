@@ -25,12 +25,16 @@ class Search
     beer_in = Beverage.new
     first_fifty = brewery_db.beers.all(name: "#{beer_name}").first(1)
     result = (first_fifty[0]).to_h
-    beer_in.id = result["id"]
-    beer_in.name = result["name"]
-    beer_in.abv = result["abv"].to_f
-    beer_in.ibu = result["ibu"].to_i
-    beer_in.style = result["style"]["id"]
-    self.user_beer = beer_in
+    if (result != nil && result["id"] != nil)
+        beer_in.id = result["id"]
+        beer_in.name = result["name"]
+        beer_in.abv = result["abv"].to_f
+        beer_in.ibu = result["ibu"].to_i
+        beer_in.style = result["style"]["id"]
+        self.user_beer = beer_in
+    else
+        redirect_to 'beers#new'
+    end
   end
 
   def smart_search

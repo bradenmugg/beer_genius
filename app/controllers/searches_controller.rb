@@ -3,9 +3,14 @@ class SearchesController < ApplicationController
   def new
     id = session[:id]
     @search = Search.new
-    @search.get_data(id)
-    @search.smart_search
-    render 'searches/new'
+    success = @search.get_data(id)
+    if (success != 0)
+        @search.smart_search
+        render 'searches/new'
+    else
+        flash[:notice] = "Beer not found"
+        redirect_to 'beers#new'
+    end
   end
   
 end
