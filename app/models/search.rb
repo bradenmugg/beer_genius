@@ -1,5 +1,5 @@
 class Beverage
-
+#Nothing
   attr_accessor :brewery, :name, :abv, :ibu, :style, :id, :hash
 
   def initialize
@@ -48,7 +48,9 @@ class Search
     abv_high = (self.user_beer.abv.to_f + 0.1)
     count = 0
     while self.chosen_ones.size <= 10
-      result = brewery_db.beers.all(abv: "#{abv_low},#{abv_high}", ibu: "#{ibu_low},#{ibu_high}", styleId: "#{self.user_beer.style}", withBreweries: "Y").first(20)
+      result = brewery_db.beers.all(abv: "#{abv_low},#{abv_high}", 
+                ibu: "#{ibu_low},#{ibu_high}", styleId: "#{self.user_beer.style}", 
+                withBreweries: "Y").first(20)
       result.each do |x|
         beer_in = Beverage.new
         hash = x.to_h
